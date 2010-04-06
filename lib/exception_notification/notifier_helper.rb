@@ -64,7 +64,14 @@ module ExceptionNotification::NotifierHelper
     return @controller.__send__(:filter_parameters, {env_key => env_value}).values[0]
   end
 
+  # Format environment variables nicely
   def format_env(key)
-    filter_sensitive_post_data_from_env(key, inspect_value(@request.env))
+    val = @request.env[key]
+    if val.is_a?(Hash) || val.is_a?(Array)
+      inspected_value = val.inspect
+    else
+      inspected_value = val.to_s
+    end
+    filter_sensitive_post_data_from_env(key, inspected_value)
   end
 end
