@@ -1,4 +1,18 @@
-* URL       : <%= @request.protocol %><%= @host %><%= @request.request_uri %>
-* IP address: <%= @request.env["HTTP_X_FORWARDED_FOR"] || @request.env["REMOTE_ADDR"] %>
-* Parameters: <%= filter_sensitive_post_data_parameters(@request.parameters).inspect %>
-* Rails root: <%= @rails_root %>
+<table>
+  <tr>
+    <td>URL</td>
+    <td><%= @request.protocol %><%= @host %><%= @request.request_uri %></td>
+  </tr>
+  <tr>
+    <td>IP address</td>
+    <td><%= @request.env["HTTP_X_FORWARDED_FOR"] || @request.env["REMOTE_ADDR"] %></td>
+  </tr>
+  <tr>
+    <td>Parameters</td>
+    <td><%= filter_sensitive_post_data_parameters(@request.parameters).inspect %></td>
+  </tr>
+  <tr>
+    <td>Rails root</td>
+    <td><%= @rails_root %></td>
+  </tr>
+</table>

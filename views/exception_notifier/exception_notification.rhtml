@@ -1,6 +1,20 @@
-A <%= @exception.class %> occurred <%= @exception_source %>:
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
-  <%= @exception.message %>
-  <%= @backtrace.first %>
+<html>
+<head>
+</head>
+<body>
+  <p>
+    A <strong><%= @exception.class %></strong> occurred <strong><%= @exception_source %></strong>.
+  </p>
 
-<%= @sections.map { |section| render_section(section) }.join %>
+  <blockquote>
+    <%= @exception.message %>
+    <%= @backtrace.first %>
+  </blockquote>
+
+  <p>
+    <%= @sections.map { |section| render_section(section) }.join %>
+  </p>
+</body>
+</html>

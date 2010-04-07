@@ -40,7 +40,7 @@ class ExceptionNotification::Notifier < ActionMailer::Base
 
   def exception_notification(exception, controller, request, data={})
     source = self.class.exception_source(controller)
-    content_type "text/plain"
+    content_type "text/html"
 
     subject    "#{email_prefix}#{source} (#{exception.class}) #{exception.message.inspect}"
 
