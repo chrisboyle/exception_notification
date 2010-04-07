@@ -28,7 +28,7 @@ module ExceptionNotification::NotifierHelper
     summary = render("exception_notifier/#{section}").strip
     unless summary.blank?
       title = render("exception_notifier/title", :locals => { :title => section }).strip
-      "#{title}\n\n#{summary.gsub(/^/, "  ")}\n\n"
+      "#{title}\n#{summary}"
     end
   end
 
@@ -41,7 +41,7 @@ module ExceptionNotification::NotifierHelper
 
   def inspect_value(value)
     len = 512
-    result = object_to_yaml(value).gsub(/\n/, "\n  ").strip
+    result = object_to_yaml(value).strip
     result = result[0,len] + "... (#{result.length-len} bytes more)" if result.length > len+20
     result
   end
@@ -53,11 +53,11 @@ module ExceptionNotification::NotifierHelper
   def exclude_raw_post_parameters?
     @controller && @controller.respond_to?(:filter_parameters)
   end
-  
+
   def filter_sensitive_post_data_parameters(parameters)
     exclude_raw_post_parameters? ? @controller.__send__(:filter_parameters, parameters) : parameters
   end
-  
+
   def filter_sensitive_post_data_from_env(env_key, env_value)
     return env_value unless exclude_raw_post_parameters?
     return PARAM_FILTER_REPLACEMENT if (env_key =~ /RAW_POST_DATA/i)
