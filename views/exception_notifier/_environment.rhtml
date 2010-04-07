@@ -1,11 +1,16 @@
 <table>
   <% @request.env.keys.sort.each do |key| -%>
     <tr>
-      <td><%= key %></td>
-      <td><%= format_env(key) %></td>
+      <th><%= key %></th>
+      <td><code><%=h format_env(key) %></code></td>
     </tr>
   <% end %>
+  <tr>
+    <th>Process</th>
+    <td><%= $$ %></td>
+  </tr>
+  <tr>
+    <th>Server</th>
+    <td><%= `hostname -s`.chomp %></td>
+  </tr>
 </table>
-
-* Process: <%= $$ %>
-* Server : <%= `hostname -s`.chomp %>

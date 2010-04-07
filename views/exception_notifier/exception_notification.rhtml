@@ -2,19 +2,37 @@
 
 <html>
 <head>
+  <style type="text/css">
+    body {
+      font-size: 10pt;
+    }
+    h2 {
+      background: #cfcfcf;
+      padding: 4px;
+    }
+    pre {
+      font-size: 10pt;
+    }
+    table {
+      border-collapse: collapse;
+    }
+    th, td {
+      font-size: 10pt;
+      text-align: left;
+      border-bottom: 1px dashed gray;
+    }
+  </style>
 </head>
 <body>
   <p>
     A <strong><%= @exception.class %></strong> occurred <strong><%= @exception_source %></strong>.
   </p>
 
-  <blockquote>
+  <pre>
     <%= @exception.message %>
     <%= @backtrace.first %>
-  </blockquote>
+  </pre>
 
-  <p>
-    <%= @sections.map { |section| render_section(section) }.join %>
-  </p>
+  <%= @sections.map { |section| render_section(section) }.join %>
 </body>
 </html>

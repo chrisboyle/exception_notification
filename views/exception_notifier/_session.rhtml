@@ -1,2 +1,10 @@
-* session id: <%= @request.session_options[:id] %>
-* data: <%= @request.session.inspect %>
+<table>
+  <tr>
+    <th>Session ID</th>
+    <td><%= @request.session_options[:id] %></td>
+  </tr>
+  <tr>
+    <th>Session data</th>
+    <td><%= @request.session.inspect %></td>
+  </tr>
+</table>

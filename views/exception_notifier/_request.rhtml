@@ -1,18 +1,18 @@
 <table>
   <tr>
-    <td>URL</td>
+    <th>URL</th>
     <td><%= @request.protocol %><%= @host %><%= @request.request_uri %></td>
   </tr>
   <tr>
-    <td>IP address</td>
+    <th>IP address</th>
     <td><%= @request.env["HTTP_X_FORWARDED_FOR"] || @request.env["REMOTE_ADDR"] %></td>
   </tr>
   <tr>
-    <td>Parameters</td>
+    <th>Parameters</th>
     <td><%= filter_sensitive_post_data_parameters(@request.parameters).inspect %></td>
   </tr>
   <tr>
-    <td>Rails root</td>
+    <th>Rails root</th>
     <td><%= @rails_root %></td>
   </tr>
 </table>
