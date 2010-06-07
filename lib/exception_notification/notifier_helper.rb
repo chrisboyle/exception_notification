@@ -28,7 +28,7 @@ module ExceptionNotification::NotifierHelper
     summary = render("exception_notifier/#{section}").strip
     unless summary.blank?
       title = render("exception_notifier/title", :locals => { :title => section }).strip
-      "#{title}\n#{summary}"
+      "#{title}\n#{summary}".html_safe!
     end
   end
 

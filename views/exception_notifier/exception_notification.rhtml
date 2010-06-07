@@ -33,6 +33,6 @@
     <%= @backtrace.first %>
   </pre>
 
-  <%= @sections.map { |section| render_section(section) }.join %>
+  <% @sections.each { |section| concat(render_section(section)) } %>
 </body>
 </html>
